@@ -35,10 +35,12 @@ export const ARTIST = {
 //  an "add photo" placeholder. Add or remove entries freely.
 // ─────────────────────────────────────────────────────────────
 export const PHOTOS = [
-  { src: 'photos/vertic-1.jpg', caption: 'Vertic', hero: true },
+  // Sourced from Instagram (@vertic_v and the labels' posts he shared).
+  // Low-res (≈500px) — swap in originals/press shots when available.
+  { src: 'photos/vertic-1.jpg', caption: 'Vertic', credit: 'boolood music', hero: true },
   { src: 'photos/vertic-2.jpg', caption: 'Behind the decks' },
-  { src: 'photos/vertic-3.jpg', caption: 'In the crowd' },
-  { src: 'photos/vertic-4.jpg', caption: 'In the studio' },
+  { src: 'photos/vertic-3.jpg', caption: 'Sondela Live, Johannesburg', credit: 'Sondela Recordings' },
+  { src: 'photos/vertic-4.jpg', caption: 'Backstage' },
 ];
 
 // Wall sections, in the order you walk past them.

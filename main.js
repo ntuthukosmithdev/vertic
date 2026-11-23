@@ -254,7 +254,7 @@ for (const it of items) {
   if (it.kind === 'cover' || (it.kind === 'photo' && it.photo.caption)) {
     const capCanvas = it.kind === 'cover'
       ? captionCanvas(it.rel.title, [it.rel.type, it.rel.label, it.rel.date].filter(Boolean).join(' · '))
-      : captionCanvas(it.photo.caption, it.photo.credit ? `Photo: ${it.photo.credit}` : 'Vertic');
+      : captionCanvas(it.photo.caption, it.photo.credit ? `Via ${it.photo.credit}` : 'Vertic');
     const cap = new THREE.Mesh(
       new THREE.PlaneGeometry(1.6, 0.18),
       new THREE.MeshBasicMaterial({ map: tex(capCanvas), transparent: true, depthWrite: false }),
@@ -518,7 +518,7 @@ function renderInfo() {
   $('#i-email').textContent = ARTIST.bookingEmail;
   const loaded = PHOTOS.filter((p) => p._img);
   $('#i-photos').innerHTML = loaded.length
-    ? loaded.map((p, i) => `<figure class="${i === 0 ? 'hero' : ''}"><img src="${esc(p.src)}" alt="${esc(p.caption || 'Vertic')}" loading="lazy" />${p.caption ? `<figcaption>${esc(p.caption)}${p.credit ? ` · Photo: ${esc(p.credit)}` : ''}</figcaption>` : ''}</figure>`).join('')
+    ? loaded.map((p, i) => `<figure class="${i === 0 ? 'hero' : ''}"><img src="${esc(p.src)}" alt="${esc(p.caption || 'Vertic')}" loading="lazy" />${p.caption ? `<figcaption>${esc(p.caption)}${p.credit ? ` · via ${esc(p.credit)}` : ''}</figcaption>` : ''}</figure>`).join('')
     : `<figure class="hero placeholder"><span>Add photos of Vertic to <b>site/photos/</b></span></figure>`;
 }
 

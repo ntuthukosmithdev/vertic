@@ -127,7 +127,7 @@ dt { color: var(--mute); }
 
 .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 80px); }
 .mega { font: 900 clamp(72px, 15vw, 220px)/0.82 var(--display); letter-spacing: -.01em; }
-.photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 28px; }
+.photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 28px; max-width: 520px; }
 .photos figure { margin: 0; }
 .photos img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; background: #e9e9e5; }
 .photos figure.hero { grid-column: 1 / -1; }
