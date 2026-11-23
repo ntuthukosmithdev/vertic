@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Vertic — Producer · Remixer · DJ</title>
+  <meta name="description" content="Vertic (Khayelihle Ngcobo) — South African producer, remixer and DJ from Pietermaritzburg. Walk the wall of releases and book a set." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+</head>
+<body>
+  <div id="loader"><span>VERTIC</span></div>
+
+  <header class="top">
+    <div class="left">
+      <a class="logo" href="#/" aria-label="Vertic — home">
+        <svg viewBox="0 0 40 24" aria-hidden="true"><path d="M2 2h7l6 14L21 2h7L18 22h-6z"/><rect x="30" y="2" width="8" height="20"/></svg>
+        <span>VERTIC</span>
+      </a>
+      <nav>
+        <a href="#/" data-nav="gallery">Index</a>
+        <a href="#/list" data-nav="list">Releases</a>
+        <a href="#/info" data-nav="info">Info</a>
+        <button type="button" data-open-drawer>Bookings</button>
+      </nav>
+    </div>
+    <div class="right">
+      <label class="search">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5"/><path d="M11 11l4 4"/></svg>
+        <input id="search" type="search" placeholder="Search" autocomplete="off" />
+      </label>
+      <div class="toggle" role="group" aria-label="View">
+        <a href="#/" data-view="gallery">Gallery</a>
+        <a href="#/list" data-view="list">List</a>
+      </div>
+      <button class="bag" type="button" data-open-drawer aria-label="Open bookings">Book <span>●</span></button>
+    </div>
+  </header>
+
+  <!-- 3D wall -->
+  <main id="stage" aria-label="Gallery wall of Vertic releases. Scroll or drag to move along the wall; click a cover to open it.">
+    <div id="tooltip" hidden></div>
+    <div id="now"><small id="now-kicker"></small><span id="now-title"></span></div>
+    <div id="hint">Scroll or drag to walk the wall</div>
+    <div id="nav-arrows">
+      <button type="button" id="prev" aria-label="Previous release">←</button>
+      <button type="button" id="next" aria-label="Next release">→</button>
+    </div>
+  </main>
+
+  <!-- List view -->
+  <section id="list" class="page" hidden>
+    <div class="page-inner">
+      <div class="list-head"><h1>Releases</h1><p id="list-count"></p></div>
+      <ol id="list-rows"></ol>
+    </div>
+  </section>
+
+  <!-- Release page -->
+  <section id="release" class="page" hidden>
+    <div class="page-inner">
+      <a class="back" href="#/">← Back to the wall</a>
+      <div class="release-grid">
+        <div class="release-art"><img id="r-img" alt="" /></div>
+        <div class="release-body">
+          <p class="kicker" id="r-kicker"></p>
+          <h1 id="r-title"></h1>
+          <p class="sub" id="r-sub"></p>
+          <p class="blurb" id="r-blurb"></p>
+          <blockquote id="r-quote" hidden></blockquote>
+          <dl id="r-meta"></dl>
+          <div class="actions" id="r-actions"></div>
+          <button class="btn ghost" type="button" data-open-drawer>Book Vertic for a set</button>
+        </div>
+      </div>
+      <div class="more">
+        <h3>More on the wall</h3>
+        <div id="r-more"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info -->
+  <section id="info" class="page" hidden>
+    <div class="page-inner info-grid">
+      <div>
+        <h1 class="mega">VERTIC</h1>
+        <p class="kicker" id="i-role"></p>
+        <div id="i-photos" class="photos"></div>
+      </div>
+      <div class="info-body">
+        <div id="i-bio"></div>
+        <h3>Released on</h3>
+        <ul id="i-labels" class="chips"></ul>
+        <h3>Follow</h3>
+        <ul id="i-links" class="chips"></ul>
+        <h3>Bookings</h3>
+        <p><span class="email" id="i-email"></span></p>
+        <button class="btn" type="button" data-open-drawer>Send a booking request</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bookings drawer (the template's "bag") -->
+  <div id="scrim" hidden></div>
+  <aside id="drawer" aria-hidden="true" aria-label="Bookings">
+    <div class="drawer-head">
+      <h2>Bookings</h2>
+      <button type="button" id="drawer-close" aria-label="Close">×</button>
+    </div>
+    <p class="drawer-note">Club nights, festivals, private events and remixes. Direct: <span class="email" id="d-email"></span></p>
+    <form id="booking">
+      <label>Name<input name="name" required /></label>
+      <label>Email<input name="email" type="email" required /></label>
+      <div class="row">
+        <label>Date<input name="date" type="date" /></label>
+        <label>City<input name="city" /></label>
+      </div>
+      <label>Event / venue<input name="event" /></label>
+      <label>Request
+        <select name="type">
+          <option>DJ set</option>
+          <option>Live / extended set</option>
+          <option>Remix</option>
+          <option>Production / collab</option>
+          <option>Press / interview</option>
+        </select>
+      </label>
+      <label>Message<textarea name="message" rows="4"></textarea></label>
+      <button class="btn" type="submit">Send request</button>
+      <p id="form-status" class="drawer-note" hidden></p>
+    </form>
+  </aside>
+
+  <noscript><p style="padding:6rem 2rem">This site needs JavaScript. Bookings: vertic@renitent.co.za</p></noscript>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
